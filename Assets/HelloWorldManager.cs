@@ -7,9 +7,14 @@ namespace HelloWorld
     public class HelloWorldManager : MonoBehaviour
     {
         public bool serverMode = true;
+        public bool hostMode = false;
         void Start()
         {
-            if (serverMode)
+            if(hostMode)
+            {
+                NetworkManager.Singleton.StartHost();
+            }
+            else if (serverMode)
             {
                 NetworkManager.Singleton.StartServer();
                 Application.targetFrameRate = 60;
