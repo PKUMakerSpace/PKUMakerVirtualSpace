@@ -37,10 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\UI\ObjectView.cs" />
+     <Compile Include="Assets\Scripts\Item\Singleton.cs" />
      <Compile Include="Assets\Scripts\Animator Behaviours\AnimatorControl.cs" />
      <Compile Include="Assets\Scripts\Player\HealthControl.cs" />
      <Compile Include="Assets\Scripts\Objects\Objects.cs" />
      <Compile Include="Assets\Scripts\tesetscript.cs" />
+     <Compile Include="Assets\Scripts\Item\PlayerPickUpItem.cs" />
      <Compile Include="Assets\HelloWorldPlayer.cs" />
      <Compile Include="Assets\Scripts\MainScenePlayerPlugin.cs" />
      <Compile Include="Assets\Scripts\Player\PCamera.cs" />
@@ -77,8 +79,6 @@
      <Compile Include="Assets\Scripts\CameraTest.cs" />
      <Compile Include="Assets\PistolAnim\Glock\GlockControl.cs" />
      <Compile Include="Assets\Scripts\Item\ItemController.cs" />
-     <Compile Include="Assets\Scripts\Item\PlayerPickUpItem.cs" />
-     <Compile Include="Assets\Scripts\Item\Singleton.cs" />
      <None Include="Assets\TPSAnimationKit\Rifle_01_v26\Docs\READ_ME_RH_WP_Unmask_Transform_01.txt" />
      <None Include="Assets\TPSAnimationKit\Rifle_01_v26\Docs\Military_Rifle_Unity_Info.txt" />
     <Reference Include="UnityEngine">
