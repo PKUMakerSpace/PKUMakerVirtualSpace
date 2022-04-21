@@ -44,7 +44,7 @@ namespace PKU.Item
         }*/
 
         /// <summary>
-        /// 在场景中丢下物品
+        /// 在场景中生成物品
         /// </summary>
         /// <param name="itemID">物品ID</param>
         /// <param name="position">位置</param>
