@@ -91,6 +91,19 @@ namespace PKU.Item
 
                 //SpawnPrefab();
             }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                RandomlySpawnItemOnMap();
+            }
+        }
+
+        private void RandomlySpawnItemOnMap()
+        {
+            // 按T键
+            Vector3 randomPos = new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
+            // 随机丢下一个可以捡的正方体
+            ItemGlobalManager.Instance.DropItemOnMap(1001, randomPos);
         }
 
 

@@ -439,7 +439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5127531355821712858, guid: 0170bc0d68868fd459f9f7f6fc06b124, type: 3}
       propertyPath: hostMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5127531355821712858, guid: 0170bc0d68868fd459f9f7f6fc06b124, type: 3}
       propertyPath: serverMode

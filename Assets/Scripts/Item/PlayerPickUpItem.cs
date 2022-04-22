@@ -33,9 +33,9 @@ public class PlayerPickUpItem : NetworkBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
-        if (IsServer)
+        if (Input.GetKeyDown(KeyCode.T))
         {
             RandomlySpawnItemOnMap();
         }
@@ -44,11 +44,11 @@ public class PlayerPickUpItem : NetworkBehaviour
     private void RandomlySpawnItemOnMap()
     {
         // 按T键
-        if (Input.GetKeyDown(KeyCode.T))
+        if (IsServer)
         {
             Vector3 randomPos = new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
             // 随机丢下一个可以捡的正方体
             ItemGlobalManager.Instance.DropItemOnMap(1001, randomPos);
         }
-    }
+    }*/
 }
