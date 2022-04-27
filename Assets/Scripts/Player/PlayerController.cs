@@ -91,6 +91,11 @@ public class PlayerController : NetworkBehaviour
 
     public int Mode = 0;    //0->玩家控制，1->AI控制
 
+    /// <summary>
+    /// 玩家是否选中聊天框
+    /// </summary>
+    public bool isChatSelected = false;
+
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
@@ -108,7 +113,7 @@ public class PlayerController : NetworkBehaviour
         {
             TargetAxisState.Value = new Vector2(0, 0);
         }
-        
+
         //状态初始化
         aimState = ID_UNAIM;
         bodyState = ID_STAND;
@@ -137,8 +142,11 @@ public class PlayerController : NetworkBehaviour
      */
     private void InputDetection()                     //检测用户的输入，每帧调用，调用的函数在AI接口中
     {
-
-        if (bodyState == ID_STAND && Input.GetKey(KeyCode.LeftShift))
+        if (isChatSelected) // 如果处于聊天状态，速度归零
+        {
+            SetSpeedServerRpc(0, 0);
+        }
+        else if (bodyState == ID_STAND && Input.GetKey(KeyCode.LeftShift))
         {
             SetSpeedServerRpc(Input.GetAxis("Horizontal") * 2, Input.GetAxis("Vertical") * 2);
         }
@@ -191,6 +199,7 @@ public class PlayerController : NetworkBehaviour
     [ServerRpc]
     public void SetSpeedServerRpc(float Horizontal, float Vertical)                    //设置vertical和horizontal速度
     {
+
         /*if (Mathf.Abs(Horizontal) > 1 || Mathf.Abs(Vertical) > 1)
         {
             Debug.Log("错误，设置的速度只能在0到1之间");

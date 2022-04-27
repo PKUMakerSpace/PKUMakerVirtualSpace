@@ -10,7 +10,7 @@ namespace HelloWorld
         public bool hostMode = false;
         void Start()
         {
-            if (hostMode)
+            /*if (hostMode)
             {
                 NetworkManager.Singleton.StartHost();
             }
@@ -22,7 +22,7 @@ namespace HelloWorld
             else
             {
                 NetworkManager.Singleton.StartClient();
-            }
+            }*/
 
             //NetworkManager.Singleton.StartClient();
         }

@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace PKU.Item
 {
-    public class ItemGlobalManager : Singleton<ItemGlobalManager>
+    public class ItemGlobalManager : NetworkBehaviour
     {
         [SerializeField]
         NetworkObjectPool objectPool;
@@ -83,6 +83,12 @@ namespace PKU.Item
                 return;
             }
 
+            if (!IsServer)
+            {
+                //this.gameObject.SetActive(false);
+                return;
+            }
+
             if (!hasInitMapItem)
             {
                 hasInitMapItem = true;
@@ -100,10 +106,12 @@ namespace PKU.Item
 
         private void RandomlySpawnItemOnMap()
         {
+            if (!IsServer)
+                return;
             // 按T键
             Vector3 randomPos = new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
             // 随机丢下一个可以捡的正方体
-            ItemGlobalManager.Instance.DropItemOnMap(1001, randomPos);
+            DropItemOnMap(1001, randomPos);
         }
 
 
