@@ -6199,7 +6199,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9c025ab35b5ba0342b45a68f28ff4f00
     internalID: 0
     vertices: []
     indices: 
@@ -6255,8 +6255,8 @@ TextureImporter:
       -40: 21300636
       +80: 21300708
       K-: 21300100
-      P-: 21300110
       -95: 21300768
+      P-: 21300110
       P: 21300094
       H: 21300030
       c: 21300252
@@ -6278,8 +6278,8 @@ TextureImporter:
       -70: 21300716
       J-: 21300098
       W: 21300156
-      8: 21300486
       comma-: 21300404
+      8: 21300486
       +15: 21300572
       comma: 21300388
       2: 21300474
@@ -6311,15 +6311,15 @@ TextureImporter:
       d-: 21300270
       k-: 21300312
       r-: 21300354
-      minus-: 21300408
+      +Speechbox_Universalcolor: 21300686
       y-: 21300400
       b: 21300250
-      +Speechbox_Universalcolor: 21300686
       L: 21300086
       Underline-: 21300212
+      -75: 21300720
       t-: 21300358
       5: 21300480
-      -75: 21300720
+      minus-: 21300408
       Double point-: 21300210
       +Speechbubble_Infobox: 21300740
       -1: 21300112
@@ -6368,8 +6368,8 @@ TextureImporter:
       plus: 21300396
       Section mark: 21300430
       Q-: 21300160
-      A: 21300016
       +95: 21300752
+      A: 21300016
       m-: 21300316
       Question mark: 21300522
       u: 21300344
