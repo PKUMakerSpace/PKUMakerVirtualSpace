@@ -4,7 +4,6 @@ using UnityEngine;
 using Unity.Netcode;
 using PKU.Item;
 
-[RequireComponent(typeof(PlayerController))]
 public class PlayerPickUpItem : NetworkBehaviour
 {
 
@@ -20,10 +19,10 @@ public class PlayerPickUpItem : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (NetworkManager.Singleton.IsServer == false)
+        /*if (NetworkManager.Singleton.IsServer == false)
         {
             return;
-        }
+        }*/
 
         // 注意是GetComponentInParent, 因为碰撞体在子物体里
         var itemController = other.gameObject.GetComponentInParent<ItemController>();

@@ -12,13 +12,14 @@ namespace PKU.Chat
         Think, Speak, Leave
     }*/
 
+    [RequireComponent(typeof(PlayerController))]
     public class PlayerChat : NetworkBehaviour
     {
         [SerializeField]
         private PlayerController playerController;
 
         [SerializeField]
-        private Canvas canvasChat;
+        private Canvas screenCanvas;
 
         [SerializeField]
         private TMP_InputField speechTextIn;
@@ -58,7 +59,8 @@ namespace PKU.Chat
         {
             if (!IsOwner)
             {
-                canvasChat.enabled = false;
+                screenCanvas.enabled = false;
+                screenCanvas.gameObject.SetActive(false);
             }
 
             fadeCanvasGroup.alpha = 0;
