@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 6d0d615fdda23f44ba255bd1dc7667f1
+  - enabled: 1
+    path: Assets/Scenes/LogIn.unity
+    guid: 50d97111ea51598409a95c8d04676a86
+  - enabled: 1
+    path: Assets/Scenes/TestScene_Hua.unity
+    guid: 2a1acb0b8ff4d7f4db622861b51e1df9
   m_configObjects: {}

@@ -171,14 +171,10 @@ public class PlayerController : NetworkBehaviour
             Standing();
 
         //Weapon Index
-        Debug.Log("update");
-        Debug.Log("delta time:" + Time.deltaTime);
 
         CurrentAxisState = Vector2.Lerp(CurrentAxisState, TargetAxisState.Value, TransitionSmoothness / (Vector2.Distance(CurrentAxisState, TargetAxisState.Value) * 10 + 1));
         if (IsServer)
         {
-            Debug.Log("CurrentAxis: " + CurrentAxisState.x + " " + CurrentAxisState.y);
-            Debug.Log("speed:" + speed);
             GetComponent<CharacterController>().SimpleMove(
                 (transform.TransformDirection(Vector3.forward) * CurrentAxisState.y +
                 transform.TransformDirection(Vector3.right) * CurrentAxisState.x) * speed
@@ -199,13 +195,6 @@ public class PlayerController : NetworkBehaviour
     [ServerRpc]
     public void SetSpeedServerRpc(float Horizontal, float Vertical)                    //设置vertical和horizontal速度
     {
-
-        /*if (Mathf.Abs(Horizontal) > 1 || Mathf.Abs(Vertical) > 1)
-        {
-            Debug.Log("错误，设置的速度只能在0到1之间");
-            return;
-        }*/
-        Debug.Log("receive server RPC");
         TargetAxisState.Value = new Vector2(Horizontal, Vertical);
     }
     public void Die()
@@ -262,9 +251,6 @@ public class PlayerController : NetworkBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Hit1");
-        if (collision.gameObject.tag == "bullet")
-            Debug.Log("Hit");
     }
 
     private void OnTriggerEnter(Collider other)

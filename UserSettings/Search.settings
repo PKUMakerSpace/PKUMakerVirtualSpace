@@ -10,7 +10,7 @@ scopes = {
 	"last_search.83F126EB" = ""
 	"OpenInspectorPreview.83F126EB" = "0"
 	"currentGroup.83F126EB" = "asset"
-	"last_search.785D90A9" = "headless"
+	"last_search.785D90A9" = "nuget"
 	"OpenInspectorPreview.785D90A9" = "0"
 	"currentGroup.785D90A9" = "all"
 }
@@ -62,6 +62,7 @@ providers = {
 	}
 }
 recentSearches = [
+	"nuget"
 ]
 searchItemFavorites = [
 ]
