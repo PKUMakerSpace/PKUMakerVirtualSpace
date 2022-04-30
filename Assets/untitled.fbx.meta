@@ -1,89 +1,14 @@
 fileFormatVersion: 2
 guid: 141a53d7925fb9e4fab06f09bcfba327
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Camera
-    100002: DummyMESH
-    100004: foot.L
-    100006: foot.L_end
-    100008: foot.R
-    100010: foot.R_end
-    100012: forearm.L
-    100014: forearm.R
-    100016: hand.L
-    100018: hand.L_end
-    100020: hand.R
-    100022: hand.R_end
-    100024: Lamp
-    100026: metarig
-    100028: pelvis.L
-    100030: pelvis.L_end
-    100032: pelvis.R
-    100034: pelvis.R_end
-    100036: shin.L
-    100038: shin.R
-    100040: shoulder.L
-    100042: shoulder.R
-    100044: spine
-    100046: spine.001
-    100048: spine.002
-    100050: spine.003
-    100052: spine.004
-    100054: spine.005
-    100056: spine.006
-    100058: spine.006_end
-    100060: thigh.L
-    100062: thigh.R
-    100064: //RootNode
-    100066: upper_arm.L
-    100068: upper_arm.R
-    400000: Camera
-    400002: DummyMESH
-    400004: foot.L
-    400006: foot.L_end
-    400008: foot.R
-    400010: foot.R_end
-    400012: forearm.L
-    400014: forearm.R
-    400016: hand.L
-    400018: hand.L_end
-    400020: hand.R
-    400022: hand.R_end
-    400024: Lamp
-    400026: metarig
-    400028: pelvis.L
-    400030: pelvis.L_end
-    400032: pelvis.R
-    400034: pelvis.R_end
-    400036: shin.L
-    400038: shin.R
-    400040: shoulder.L
-    400042: shoulder.R
-    400044: spine
-    400046: spine.001
-    400048: spine.002
-    400050: spine.003
-    400052: spine.004
-    400054: spine.005
-    400056: spine.006
-    400058: spine.006_end
-    400060: thigh.L
-    400062: thigh.R
-    400064: //RootNode
-    400066: upper_arm.L
-    400068: upper_arm.R
-    2000000: Camera
-    2100000: Dummy
-    4300000: DummyMESH
-    7400000: metarig|metarigAction
-    9500000: //RootNode
-    10800000: Lamp
-    13700000: DummyMESH
-    2186277476908879412: ImportLogs
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: -887982601649841707
+    second: metarig|metarigAction
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -92,6 +17,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -101,7 +27,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -109,40 +35,53 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -152,13 +91,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 3
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
