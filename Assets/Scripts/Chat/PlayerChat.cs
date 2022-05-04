@@ -111,7 +111,7 @@ namespace PKU.Chat
             Debug.Log(clientID + message);
         }*/
 
-        [ServerRpc(RequireOwnership = false)]
+        [ServerRpc]
         public void ReceiveChatMessageServerRpc(ulong clientID, string message)
         {
             if (!NetworkManager.Singleton.IsServer)

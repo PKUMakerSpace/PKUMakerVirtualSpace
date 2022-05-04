@@ -8,6 +8,7 @@ TagManager:
   - PlayerCamera
   - DrawBoard
   - Camera
+  - DrawCanvas
   layers:
   - Default
   - TransparentFX

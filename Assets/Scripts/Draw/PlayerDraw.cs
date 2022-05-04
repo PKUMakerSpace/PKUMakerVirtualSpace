@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
-
+using System.Linq;
 
 namespace PKU.Draw
 {
@@ -23,7 +23,8 @@ namespace PKU.Draw
 
         public DrawBoardController drawBoard = null;
 
-        private DrawCanvasController drawCanvas = null;
+        [SerializeField]
+        private DrawCanvasController drawCanvas;
 
         private Camera drawCamera;
 
@@ -42,11 +43,201 @@ namespace PKU.Draw
 
         public float transparency = 1f;
 
+        private List<DrawData> drawDataList;
+
+        private GameObject[] drawBoards;
+
+        //private Dictionary<int, DrawData> drawDataDict;
 
         private void Start()
         {
+
+            drawCanvas = GameObject.FindGameObjectWithTag("DrawCanvas").GetComponent<DrawCanvasController>();
+
+            drawDataList = drawCanvas.drawDataList;
+
+            // drawboard 固定数量
+            drawBoards = GameObject.FindGameObjectsWithTag("DrawBoard");
+
+            if (!IsOwner)
+            {
+                return;
+            }
+
+            RequestListServerRpc(OwnerClientId);
+
+            //drawCanvas.myID = OwnerClientId;
+
+            //drawCanvas.RequestListServerRpc(OwnerClientId);
+
+            //drawCanvas.enabled = true;
+            //drawCanvas.GetComponent<NetworkObject>().ChangeOwnership(OwnerClientId);
+
+            //drawCanvas.ListInit();
+
+            /*GameObject[] drawBoards = GameObject.FindGameObjectsWithTag("DrawBoard");
+
+            foreach (var board in drawBoards)
+            {
+                DrawBoardController dbc = board.GetComponent<DrawBoardController>();
+                dbc.UpdateSpriteServerRpc(OwnerClientId);
+            }*/
+
             DrawUI.SetActive(false);
+
         }
+
+        public DrawData GetDrawData(int drawID)
+        {
+            return drawDataList.Where(d => d.drawID == drawID).FirstOrDefault();
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void RequestListServerRpc(ulong clientID)
+        {
+            if (!IsServer)//|| clientID != OwnerClientId)
+            {
+                return;
+            }
+
+            //TestClientRpc();
+
+            Debug.Log("Client ID: " + clientID + " ServerID: " + OwnerClientId);
+
+            if (clientID == 0)
+            {
+                drawDataList.Add(new DrawData(114514, 128, 128));
+
+                drawDataList.Add(new DrawData(666, 128, 128));
+
+                SyncDrawBoardClientRpc();
+
+            }
+            else
+            {
+
+                ClientRpcParams clientRpcParams = new ClientRpcParams
+                {
+                    Send = new ClientRpcSendParams
+                    {
+                        TargetClientIds = new ulong[] { clientID }
+                    }
+                };
+
+                foreach (var drawData in drawDataList)
+                {
+
+                    if (drawData.drawTex == null)
+                    {
+                        Debug.Log(drawData.drawID + " drawTex is null before WriteValueSafe!");
+                    }
+                    else
+                    {
+                        Debug.Log(drawData.drawID + " drawTex is not null before WriteValueSafe!");
+                    }
+
+                    //TestClientRpc();
+
+                    SyncDrawDataClientRpc(drawData, clientRpcParams);
+                }
+
+                SyncDrawBoardClientRpc(-1, clientRpcParams);
+            }
+
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void RequestMonoServerRpc(ulong clientID, int drawID)
+        {
+            if (!IsServer)//|| clientID != OwnerClientId)
+            {
+                return;
+            }
+
+            Debug.Log("Request " + drawID + " drawdata from " + clientID);
+
+            ClientRpcParams clientRpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new ulong[] { clientID }
+                }
+            };
+
+            var drawData = drawDataList.Find(d => d.drawID == drawID);
+
+            SyncDrawDataClientRpc(drawData, clientRpcParams);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void UpdateMonoServerRpc(ulong clientID, DrawData drawData)
+        {
+            if (!IsServer) //|| clientID != OwnerClientId)
+            {
+                return;
+            }
+
+            SyncDrawDataClientRpc(drawData);
+
+            SyncDrawBoardClientRpc(drawData.drawID);
+        }
+
+        [ClientRpc]
+        private void TestClientRpc()
+        {
+            Debug.Log("test client Rpc");
+        }
+
+        [ClientRpc]
+        private void SyncDrawBoardClientRpc(int drawID = -1, ClientRpcParams clientRpcParams = default)
+        {
+            /*if (!IsOwner)
+            {
+                return;
+            }*/
+
+            foreach (var board in drawBoards)
+            {
+                Debug.Log("board found!");
+                DrawBoardController dbc = board.GetComponent<DrawBoardController>();
+
+                if (dbc.drawID == drawID || drawID == -1)
+                {
+                    dbc.DrawBoardUpdate(GetDrawData(dbc.drawID));
+                }
+            }
+        }
+
+
+        [ClientRpc]
+        public void SyncDrawDataClientRpc(DrawData drawData, ClientRpcParams clientRpcParams = default)
+        {
+
+            Debug.Log("DrawData with Server! " + OwnerClientId);
+
+            //drawDataList.Remove(drawDataList.Where(d => d.drawID == drawData.drawID).FirstOrDefault());
+
+            //drawDataList.Add(drawData);
+
+            var dd = drawDataList.Where(d => d.drawID == drawData.drawID).FirstOrDefault();
+
+            if (dd.drawID != drawData.drawID)
+            {
+                Debug.Log("Add New DrawData");
+                drawDataList.Add(drawData);
+            }
+            else
+            {
+                Debug.Log("Modify Old DrawData");
+                // !
+                drawDataList.Remove(dd);
+                drawDataList.Add(drawData);
+            }
+
+            Debug.Log("sync success! board");
+
+        }
+
 
         private void Update()
         {
@@ -76,6 +267,15 @@ namespace PKU.Draw
 
             if (drawBoard != null)
             {
+                if (drawBoard.isInUsed.Value)
+                {
+                    Debug.Log("This DrawBoard is occupied.");
+
+                    interactHint.gameObject.SetActive(false);
+
+                    return;
+                }
+
                 if (!drawBoard.playerLastFrame.Contains(this))
                 {
                     drawBoard = null;
@@ -160,22 +360,30 @@ namespace PKU.Draw
 
             playerController.SetSpeedServerRpc(0, 0);
 
-            drawCanvas = drawBoard.drawCanvas;
+            //drawCanvas = drawBoard.drawCanvas;
 
-            drawCanvas.Init();
+            // ! 更新
+
+            RequestMonoServerRpc(OwnerClientId, drawBoard.drawID);
+
+            drawCanvas.DrawInit(drawBoard.drawID);
 
             // 保管玩家的camera
             playerCam = playerController.Camera;
 
-            playerController.Camera = drawBoard.drawCamera;
+            playerController.Camera = drawCanvas.drawCamera;
 
-            drawCamera = drawBoard.drawCamera.GetComponent<Camera>();
+            drawCamera = drawCanvas.drawCamera.GetComponent<Camera>();
 
             playerCam.SetActive(false);
 
-            drawBoard.drawCamera.SetActive(true);
+            drawCanvas.drawCamera.SetActive(true);
 
-            drawBoard.isInUsed = true;
+            // ! board
+
+            var board = drawBoard.GetComponent<DrawBoardController>();
+
+            SetUsingStateServerRpc(board, true);
 
             no_drawing_on_current_drag = mouse_was_previously_held_down = false;
 
@@ -186,13 +394,23 @@ namespace PKU.Draw
 
         public void OnDrawModeExit()
         {
+
+            // ! 通知更新
+
+            //drawCanvas.UpdateDrawData(drawBoard.drawID);
+            UpdateMonoServerRpc(OwnerClientId, drawCanvas.GetCanvasDrawData(drawBoard.drawID));
+
+            // drawBoard.UpdateSpriteServerRpc(OwnerClientId);
+
+            // !
+
             Debug.Log("Leave Draw Mode.");
 
             DrawUI.SetActive(false);
 
             playerController.Camera = playerCam;
 
-            drawBoard.drawCamera.SetActive(false);
+            drawCanvas.drawCamera.SetActive(false);
 
             drawCamera = null;
 
@@ -202,7 +420,27 @@ namespace PKU.Draw
 
             playerController.SetSpeedServerRpc(0, 0);
 
-            drawBoard.isInUsed = false;
+            // ! board
+
+            var board = drawBoard.GetComponent<DrawBoardController>();
+
+            SetUsingStateServerRpc(board, false);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SetUsingStateServerRpc(NetworkBehaviourReference board, bool state)
+        {
+            if (!IsServer)
+            {
+                return;
+            }
+
+            if (board.TryGet(out DrawBoardController drawBoardController))
+            {
+                Debug.Log("Set Board Using State to " + state);
+
+                drawBoardController.isInUsed.Value = state;
+            }
         }
 
         #region UI Widget
@@ -256,7 +494,7 @@ namespace PKU.Draw
 
         public void SetEraser()
         {
-            SetBrushColor(new Color(255f, 255f, 255f, 0f));
+            SetBrushColor(new Color(255f, 255f, 255f, 255f));
         }
 
         #endregion
