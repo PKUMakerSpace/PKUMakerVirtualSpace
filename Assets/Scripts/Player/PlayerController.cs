@@ -96,6 +96,11 @@ public class PlayerController : NetworkBehaviour
     /// </summary>
     public bool isChatSelected = false;
 
+    /// <summary>
+    /// 玩家是否在画画模式
+    /// </summary>
+    public bool isDrawing = false;
+
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
@@ -142,7 +147,8 @@ public class PlayerController : NetworkBehaviour
      */
     private void InputDetection()                     //检测用户的输入，每帧调用，调用的函数在AI接口中
     {
-        if (isChatSelected) // 如果处于聊天状态，速度归零
+        // TODO
+        if (isChatSelected || isDrawing) // 如果处于聊天状态，速度归零
         {
             SetSpeedServerRpc(0, 0);
         }
