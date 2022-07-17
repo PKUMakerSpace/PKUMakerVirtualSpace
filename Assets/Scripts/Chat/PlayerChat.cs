@@ -38,12 +38,15 @@ namespace PKU.Chat
         [SerializeField]
         private CanvasGroup fadeCanvasGroup;
 
+        [Tooltip("淡入时间")]
         [SerializeField]
         private float fadeInTime;
 
+        [Tooltip("展示时间")]
         [SerializeField]
         private float displayTime;
 
+        [Tooltip("淡出时间")]
         [SerializeField]
         private float fadeOutTime;
 

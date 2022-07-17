@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+/// <summary>
+/// 该部件挂载在CanvasWorldUI上，使之始终朝向Main Camera
+/// </summary>
 public class PlayerUIFaceCamera : NetworkBehaviour
 {
     private Camera mainCamera = null;
