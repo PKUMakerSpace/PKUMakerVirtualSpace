@@ -336,7 +336,7 @@ namespace PKU.Draw
 
             //drawData.drawTex = new Texture2D(drawData.pixelWidth, drawData.pixelHeight);
 
-            Debug.Log("size " + drawData.pixelWidth + " " + drawData.pixelHeight);
+            Debug.Log("size " + drawData.drawWidth + " " + drawData.drawHeight);
 
             /*if (drawData.drawTex == null)
             {
@@ -345,7 +345,7 @@ namespace PKU.Draw
                 //RequestNewDrawTextureServerRpc(drawID);
             }*/
 
-            drawSprite = Sprite.Create(drawData.drawTex, new Rect(0, 0, drawData.pixelWidth, drawData.pixelHeight), new Vector2(0.5f, 0.5f));
+            drawSprite = Sprite.Create(drawData.drawTex, new Rect(0, 0, drawData.drawWidth, drawData.drawHeight), new Vector2(0.5f, 0.5f));
 
             this.GetComponent<SpriteRenderer>().sprite = drawSprite;
 

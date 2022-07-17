@@ -48,16 +48,18 @@ namespace PKU.Item
         /// </summary>
         /// <param name="itemID">物品ID</param>
         /// <param name="position">位置</param>
-        public void DropItemOnMap(int itemID, Vector3 position)
+        /// <param name="rotation">旋转</param>
+        public void SpawnItemOnMap(int itemID, Vector3 position, Quaternion rotation)
         {
             // 从对象池中取出item基类物体
-            GameObject item = objectPool.GetNetworkObject(itemBase).gameObject;
+            GameObject item = objectPool.GetNetworkObject(itemBase, position, rotation).gameObject;
 
             // 获取item详细信息
             ItemData itemData = GetItemDataWithID(itemID);
 
             // 将item移动到相应位置
-            item.transform.position = position;
+            //item.transform.position = position;
+            //item.transform.rotation = rotation;
 
             // 在场景中生成item基类物体
             item.GetComponent<NetworkObject>().Spawn(true);
@@ -72,7 +74,7 @@ namespace PKU.Item
             itemPrefab.transform.SetParent(item.transform, false);
 
             // 对item进行初始化
-            item.GetComponent<ItemController>().Init(itemData);
+            item.GetComponent<ItemController>().Init(itemData, itemPrefab);
         }
 
 
@@ -109,9 +111,12 @@ namespace PKU.Item
             if (!IsServer)
                 return;
             // 按T键
-            Vector3 randomPos = new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
-            // 随机丢下一个可以捡的正方体
-            DropItemOnMap(1001, randomPos);
+            Vector3 randomPos = new Vector3(Random.Range(-10f, 10f), 1f, Random.Range(-10f, 10f));
+            Vector3 randomRot = new Vector3(Random.Range(-180f, 180f),
+                                            Random.Range(-180f, 180f),
+                                            Random.Range(-180f, 180f));
+            // 随机生成一个可以捡的正方体
+            SpawnItemOnMap(1001, randomPos, Quaternion.Euler(randomRot));
         }
 
 
@@ -124,7 +129,7 @@ namespace PKU.Item
 
             foreach (var mapItem in mapItemList)
             {
-                DropItemOnMap(mapItem.itemID, mapItem.position);
+                SpawnItemOnMap(mapItem.itemID, mapItem.position, mapItem.rotation);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using PKU.Event;
 
 /* 控制玩家的大多数动作
  * 其他的控制主要在枪械的脚本及Healthcontrol中
@@ -125,6 +126,7 @@ public class PlayerController : NetworkBehaviour
         weaponState = ID_UNARMED;
 
         CameraControl = Camera.GetComponent<PCamera>();
+
     }
 
     // Update is called once per frame
@@ -147,7 +149,7 @@ public class PlayerController : NetworkBehaviour
      */
     private void InputDetection()                     //检测用户的输入，每帧调用，调用的函数在AI接口中
     {
-        // TODO
+        // TODO 把所有的输入检测都放在这里!!!
         if (isChatSelected || isDrawing) // 如果处于聊天状态，速度归零
         {
             SetSpeedServerRpc(0, 0);
@@ -159,6 +161,13 @@ public class PlayerController : NetworkBehaviour
         else
         {
             SetSpeedServerRpc(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        }
+
+        // 按E互动
+        if (Input.GetKey(KeyCode.E))
+        {
+            Debug.Log("Press E!");
+            EventHandler.CallPlayerReadEvent();
         }
     }
     public void AIControl()//所有AI操作写在此处即可

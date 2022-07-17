@@ -20869,9 +20869,9 @@ GameObject:
   - component: {fileID: 9171263558532793550}
   - component: {fileID: 6136773495621061716}
   - component: {fileID: 1514981709994816690}
-  - component: {fileID: 4968984338709035901}
   - component: {fileID: 928301304554468624}
   - component: {fileID: 8957097379069017266}
+  - component: {fileID: 3328037753755697849}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -21024,25 +21024,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beaconPrefab: {fileID: 0}
---- !u!114 &4968984338709035901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613260626286178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 714ce6eaefb2d134ab1ca2cad454137a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 114807539843525840}
-  currentItemData:
-    itemID: 0
-    itemName: 
-    itemDescription: 
-    canPickUp: 0
-    itemPrefab: {fileID: 0}
 --- !u!114 &928301304554468624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21056,7 +21037,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 114807539843525840}
-  myCamera: {fileID: 20689547903200602}
   interactHint: {fileID: 2316714842811612942}
   drawBoard: {fileID: 0}
   drawCanvas: {fileID: 0}
@@ -21086,6 +21066,20 @@ MonoBehaviour:
   fadeInTime: 0.3
   displayTime: 3
   fadeOutTime: 1
+--- !u!114 &3328037753755697849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613260626286178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626df1b6fb32c4c4db1f050fc750ed8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRadius: 3
+  interactHint: {fileID: 2316714842811612942}
 --- !u!1 &1614548878227108
 GameObject:
   m_ObjectHideFlags: 0
@@ -34004,8 +33998,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

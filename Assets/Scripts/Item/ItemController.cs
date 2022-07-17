@@ -8,8 +8,11 @@ namespace PKU.Item
     public class ItemController : NetworkBehaviour
     {
 
-        public int itemID;
-        private ItemData itemData;
+        //private ItemData itemData;
+        /// <summary>
+        /// itemBase的子物体
+        /// </summary>
+        public GameObject childItem;
 
         //private Collider coll;
 
@@ -17,13 +20,22 @@ namespace PKU.Item
         /// 初始化item
         /// </summary>
         /// <param name="data"></param>
-        public void Init(ItemData data)
+        public void Init(ItemData data, GameObject prefab)
         {
-            itemData = data;
+            //itemData = data;
+
+            childItem = prefab;
+
+            ICanInit iCanInit = childItem.GetComponent<ICanInit>();
+            if (iCanInit != null)
+            {
+                iCanInit.Init(data);
+            }
 
             //coll = transform.GetComponentInChildren<Collider>();
         }
 
+        /*
         /// <summary>
         /// 判断能否捡起item, 如果能, 删除场景中那个item, 返回itemData.
         /// 否则返回null
@@ -57,7 +69,7 @@ namespace PKU.Item
                 return true;
             }
             return false;
-        }
+        }*/
 
     }
 

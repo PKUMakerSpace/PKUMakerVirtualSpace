@@ -99,7 +99,7 @@ namespace PKU.Draw
 
         public void DrawBoardUpdate(DrawData drawData)
         {
-            Sprite spr = Sprite.Create(drawData.drawTex, new Rect(0, 0, drawData.pixelWidth, drawData.pixelHeight), new Vector2(0.5f, 0.5f));
+            Sprite spr = Sprite.Create(drawData.drawTex, new Rect(0, 0, drawData.drawWidth, drawData.drawHeight), new Vector2(0.5f, 0.5f));
 
             content.sprite = spr;
         }

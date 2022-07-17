@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+/// <summary>
+/// 该部件挂载在CanvasWorldUI上，用来寻找Main Camera
+/// </summary>
 [RequireComponent(typeof(Canvas))]
 public class SetEventCamera : NetworkBehaviour
 {
