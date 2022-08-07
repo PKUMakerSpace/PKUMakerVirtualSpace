@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataList:
   - itemID: 1001
-    itemName: "\u6B63\u65B9\u4F53"
-    itemDescription: "\u8FD9\u662F\u4E00\u4E2A\u6B63\u65B9\u4F53"
-    canPickUp: 1
+    varID: 0
+    itemName: "\u7ACB\u65B9\u4F53"
+    itemDescription: "\u8FD9\u662F\u4E00\u4E2A\u7ACB\u65B9\u4F53"
     itemPrefab: {fileID: 1439789169441494263, guid: 56f24804f8d822841a793f61ea6adcdf, type: 3}
   - itemID: 1002
+    varID: 0
     itemName: "\u7403"
     itemDescription: "\u8FD9\u662F\u4E00\u4E2A\u7403"
-    canPickUp: 1
     itemPrefab: {fileID: 1439789169441494263, guid: e2e7c4220f60729419d4b7ca15ca95c7, type: 3}

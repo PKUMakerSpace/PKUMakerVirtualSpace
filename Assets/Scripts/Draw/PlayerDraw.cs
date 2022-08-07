@@ -13,24 +13,42 @@ namespace PKU.Draw
         [SerializeField]
         private PlayerController playerController;
 
-        [SerializeField]
-        private Camera myCamera;
-
+        /// <summary>
+        /// 用于保管玩家的Main Camera
+        /// </summary>
         private GameObject playerCam;
 
+        /// <summary>
+        /// 可以互动的提示UI
+        /// </summary>
         [SerializeField]
         private TMP_Text interactHint;
 
+        /// <summary>
+        /// 玩家正在使用的画板（画板在scene中可以有很多个）
+        /// </summary>
         public DrawBoardController drawBoard = null;
 
+        /// <summary>
+        /// 玩家使用画板时，会使用drawCanvas作为画布
+        /// </summary>
         [SerializeField]
         private DrawCanvasController drawCanvas;
 
+        /// <summary>
+        /// 玩家使用画板时，会切换到该camera
+        /// </summary>
         private Camera drawCamera;
 
+        /// <summary>
+        /// 玩家使用画板时，会显示DrawUI
+        /// </summary>
         [SerializeField]
         private GameObject DrawUI;
 
+        /// <summary>
+        /// 玩家是否在绘画模式
+        /// </summary>
         private bool isDrawing = false;
 
         private bool no_drawing_on_current_drag = false;

@@ -15,5 +15,7 @@ MonoBehaviour:
   mapItemList:
   - itemID: 1001
     position: {x: 1, y: 1, z: 1}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
   - itemID: 1002
     position: {x: 3, y: 1, z: 2}
+    rotation: {x: 0.025556453, y: 0.21636546, z: -0.0056657293, w: 0.97596145}

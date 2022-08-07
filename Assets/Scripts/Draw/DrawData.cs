@@ -8,15 +8,15 @@ namespace PKU.Draw
     public struct DrawData
     {
         public int drawID;
-        public int pixelWidth;
-        public int pixelHeight;
+        public int drawWidth;
+        public int drawHeight;
         public Texture2D drawTex;
 
         public DrawData(int id, int width, int height)
         {
             drawID = id;
-            pixelWidth = width;
-            pixelHeight = height;
+            drawWidth = width;
+            drawHeight = height;
             drawTex = new Texture2D(width, height);
 
             for (int w = 0; w < width; w++)
@@ -33,8 +33,8 @@ namespace PKU.Draw
         public DrawData(int id, Texture2D tex)
         {
             drawID = id;
-            pixelWidth = tex.width;
-            pixelHeight = tex.height;
+            drawWidth = tex.width;
+            drawHeight = tex.height;
             drawTex = tex;
         }
 
@@ -53,6 +53,15 @@ namespace PKU.Draw
         }*/
 
 
+    };
+
+    [System.Serializable]
+    public struct DrawBlock
+    {
+        public int drawID;
+        public int height;
+        public int width;
+        public Color[,] pixels;
     };
 
     public struct DrawData2 : INetworkSerializable
@@ -129,8 +138,8 @@ namespace PKU.Draw
         public static void WriteValueSafe(this FastBufferWriter writer, in DrawData dat)
         {
             int id = dat.drawID;
-            int width = dat.pixelWidth;
-            int height = dat.pixelHeight;
+            int width = dat.drawWidth;
+            int height = dat.drawHeight;
             if (dat.drawTex == null)
             {
                 Debug.Log("drawTex is null in WriteValueSafe!");
