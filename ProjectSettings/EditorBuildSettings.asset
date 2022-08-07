@@ -6,21 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/MainMenu.unity
+    guid: 3fd811ea49cd7e244b1a52ec7aab0473
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/Scenes/TestScene_Liu.unity
     guid: 1268b3b1f2e0cd149ab73ad263ca85aa
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 6d0d615fdda23f44ba255bd1dc7667f1
-  - enabled: 1
-    path: Assets/Scenes/LogIn.unity
-    guid: 50d97111ea51598409a95c8d04676a86
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene_Hua.unity
     guid: 2a1acb0b8ff4d7f4db622861b51e1df9
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/PKUMakers.unity
+    guid: 103df3415cd05014e970def87fea930a
+  - enabled: 1
+    path: Assets/Scenes/PKUCampus.unity
+    guid: faa863e49b5aefb4ca4b9d443d0db588
+  - enabled: 1
+    path: Assets/Scenes/PKUMainHub.unity
+    guid: edd803bcb348028409833769c904484f
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: a10749d4ee76f634c85d14ac10001a5c, type: 2}

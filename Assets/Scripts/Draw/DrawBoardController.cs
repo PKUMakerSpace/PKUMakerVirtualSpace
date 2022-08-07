@@ -69,7 +69,7 @@ namespace PKU.Draw
             {
                 for (int i = 0; i < colls.Length; i++)
                 {
-                    // Debug.Log("检测到玩家");
+                    //Debug.Log("检测到玩家");
                     GameObject player = colls[i].gameObject;
 
                     PlayerDraw playerDraw = player.GetComponent<PlayerDraw>();
